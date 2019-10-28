@@ -11,22 +11,50 @@ document.addEventListener("keyup", DibujarTeclado);
 
 console.log(teclado);
 
+ var  cuadrito = document.getElementById("Carta");
+
+ var papel = cuadrito.getContext("2d")
+  
+DibujarLinea("blue",149,149,151,151,papel)
+
+ var desplazar = 10;
+ var x = 150 ;
+ var y =  150 ;
+
+function DibujarLinea(color, xinicial, yinicial, xfinal, yfinal,lienzo)
+{
+  lienzo.beginPath();
+  lienzo.strokeStyle = color;
+   lienzo.lineWidth =3;
+  lienzo.moveTo(xinicial, yinicial);
+  lienzo.lineTo(xfinal, yfinal);
+  lienzo.stroke();
+
+  lienzo.closePath();
+}
+
+
 
 
 function DibujarTeclado(evento)
 {
   switch(evento.keyCode){
   	case  teclado.UP:
-  	console.log("vamos para arriba");
+  	DibujarLinea("blue",x,y,x,y - desplazar,papel);
+    y = y - desplazar;
   	break;
   	case teclado.DOWN :
-  	console.log("vamos para abajo");
+  DibujarLinea("green",x,y ,x,y + desplazar,papel);
+      y  = y + desplazar;
   	break;
   	case  teclado.LEFT :
-  	console.log("vamos para derechas");
+  	 DibujarLinea("black",x,y ,x -desplazar,y ,papel);
+      x = x - desplazar;
   	break;
   	case teclado.RIGT :
-  	console.log("vamos para la izquierdad");
+  	 DibujarLinea("green",x,y ,x +desplazar,y ,papel);
+      x = x + desplazar;
+
   	break;
   	default:
   	console.log("es otra letra");
